@@ -12,24 +12,23 @@ import java.util.List;
 
 @Service
 public class MessageService {
+    private final MessagingRepository messagingRepository;
+
     @Autowired
-    private MessagingRepository messagingRepository;
+    public MessageService(MessagingRepository messagingRepository) {
+        this.messagingRepository = messagingRepository;
+    }
 
     public List<Messaging> getAllCheckedInbox(String usernameReceptor) {
-        List<Messaging> inbox = new ArrayList<>();
-        messagingRepository.findAllByUsernameRecpetorAndCheckedIsTrue(usernameReceptor).forEach(inbox::add);
-        return  inbox;
+        return new ArrayList<>(messagingRepository.findAllByUsernameRecpetorAndCheckedIsTrue(usernameReceptor));
 
     }
     public List<Messaging> getAllNotCheckedInbox(String usernameReceptor) {
-        List<Messaging> inbox = new ArrayList<>();
-        messagingRepository.findAllByUsernameRecpetorAndCheckedIsFalse(usernameReceptor).forEach(inbox::add);
-        return  inbox;
+        return new ArrayList<>(messagingRepository.findAllByUsernameRecpetorAndCheckedIsFalse(usernameReceptor));
 
     }
     public Messaging getOneMessage(long id, String username) throws Exception {
-        Messaging messaging;
-        messaging =  messagingRepository.findById(id);
+        Messaging messaging =  messagingRepository.findById(id);
         if (username.equals(messaging.getUsernameRecpetor()) || username.equals(messaging.getUsernameSender())) {
             messaging.setChecked(true);
             messagingRepository.save(messaging);
@@ -41,15 +40,12 @@ public class MessageService {
     }
     public void createMessage(Messaging messaging, String usernameSender) {
        messaging.setChecked(false);
-       Date date = new Date();
-       messaging.setTime(date);
+       messaging.setTime(new Date());
        messaging.setUsernameSender(usernameSender);
        messagingRepository.save(messaging);
     }
     public List<Messaging> getAllSentInbox(String usernameSender) {
-        List<Messaging> inbox = new ArrayList<>();
-        messagingRepository.findAllByUsernameSender(usernameSender).forEach(inbox::add);
-        return  inbox;
+        return new ArrayList<>(messagingRepository.findAllByUsernameSender(usernameSender));
 
     }
 }

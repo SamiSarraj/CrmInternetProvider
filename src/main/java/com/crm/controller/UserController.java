@@ -65,7 +65,7 @@ public class UserController {
     // add new customer
     @PostMapping(value="/addCustomer")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
-    public ResponseEntity<?> addCustomer(@RequestBody NewCustomerDto newCustomerDto) throws Exception {
+    public ResponseEntity<?> addCustomer(@RequestBody NewUserDto newCustomerDto) throws Exception {
         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) throw new Exception("User not found");
         if(userService.getUser(newCustomerDto.getUsername()) != null) {
@@ -100,7 +100,7 @@ public class UserController {
         if (user == null) {
             throw new Exception("No customer found");
         }
-        userService.updateUser(user,shortUserDto);
+        userService.updateEmployeeRole(user,shortUserDto);
         System.out.println("User " + shortUserDto.getUsername() + " was modified");
         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
     }

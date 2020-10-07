@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class InternetPackagesService {
+    private final InternetPackagesRepository internetPackagesRepository;
+
     @Autowired
-    private InternetPackagesRepository internetPackagesRepository;
+    public InternetPackagesService(InternetPackagesRepository internetPackagesRepository) {
+        this.internetPackagesRepository = internetPackagesRepository;
+    }
 
 
     public List<InternetPackages> getAllNetPackages() {
@@ -19,15 +23,14 @@ public class InternetPackagesService {
         internetPackagesRepository.findAll().forEach(internetPackages::add);
         return internetPackages;
     }
-    public List<InternetPackages> getAllNetPackagesByType(String type) {
-        List<InternetPackages> internetPackages = new ArrayList<>();
-        internetPackagesRepository.findInternetPackagesByType(type).forEach(internetPackages::add);
-        return internetPackages;
-    }
+
+    public List<InternetPackages> getAllNetPackagesByType(String type) { return new ArrayList<>(internetPackagesRepository.findInternetPackagesByType(type)); }
+
     public void addNewPackage(InternetPackages internetPackages) {
         internetPackagesRepository.save(internetPackages);
     }
+
     public InternetPackages getOneById(long id) {
-        return  internetPackagesRepository.findById(id);
+        return internetPackagesRepository.findById(id);
     }
 }

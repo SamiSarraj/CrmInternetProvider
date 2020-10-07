@@ -19,14 +19,18 @@ import java.util.List;
 
 @Service
 public class ProcessUnitService {
+    private final ProcessUnitRepository processUnitRepository;
+    private final CommentsTicketRepository commentsTicketRepository;
+    private final TicketsRepositry ticketsRepositry;
+    private final UserService userService;
+
     @Autowired
-    private ProcessUnitRepository processUnitRepository;
-    @Autowired
-    private CommentsTicketRepository commentsTicketRepository;
-    @Autowired
-    private TicketsRepositry ticketsRepositry;
-    @Autowired
-    private UserService userService;
+    public ProcessUnitService(ProcessUnitRepository processUnitRepository, CommentsTicketRepository commentsTicketRepository, TicketsRepositry ticketsRepositry, UserService userService) {
+        this.processUnitRepository = processUnitRepository;
+        this.commentsTicketRepository = commentsTicketRepository;
+        this.ticketsRepositry = ticketsRepositry;
+        this.userService = userService;
+    }
 
 
     public void assignTicket(User employee, Tickets tickets, User admin) {
