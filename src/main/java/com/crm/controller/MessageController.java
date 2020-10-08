@@ -14,14 +14,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 // controller to handle messages requests
 @RestController
-@RequestMapping(value="/message")
+@RequestMapping(value = "/message")
 public class MessageController {
+    private final UserService userService;
+    private final MessageService messageService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private MessageService messageService;
+    public MessageController(UserService userService, MessageService messageService) {
+        this.userService = userService;
+        this.messageService = messageService;
+    }
+
     // get all checked messages
     @GetMapping(value = "/inbox/checked")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
@@ -31,6 +37,7 @@ public class MessageController {
         if (user == null) throw new Exception("Customer not found");
         return messageService.getAllCheckedInbox(user.getUsername());
     }
+
     // get all new messages
     @GetMapping(value = "/inbox/notChecked")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
@@ -40,8 +47,9 @@ public class MessageController {
         if (user == null) throw new Exception("Customer not found");
         return messageService.getAllNotCheckedInbox(user.getUsername());
     }
+
     // get detalis of message
-    @GetMapping(value="/inbox/{id}")
+    @GetMapping(value = "/inbox/{id}")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
     public Messaging getOneMessage(@PathVariable long id) throws Exception {
         // check if the user requesting this method is valid
@@ -49,6 +57,7 @@ public class MessageController {
         if (user == null) throw new Exception("Customer not found");
         return messageService.getOneMessage(id, user.getUsername());
     }
+
     // create a new message
     @PostMapping(value = "/compose/newMessage")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
@@ -63,6 +72,7 @@ public class MessageController {
         System.out.println("New message add");
         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
     }
+
     // get all sent messages
     @GetMapping(value = "/sentInbox")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
@@ -72,14 +82,15 @@ public class MessageController {
         if (user == null) throw new Exception("Customer not found");
         return messageService.getAllSentInbox(user.getUsername());
     }
+
     // get sender full name
-    @GetMapping(value ="/compose/senderFullName")
+    @GetMapping(value = "/compose/senderFullName")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
     public MessageUserDto getUserFullName() throws Exception {
         // check if the user requesting this method is valid
         User sender = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (sender == null) throw new Exception("Sender not found");
-        MessageUserDto messageUserDto= userService.getUserFullName(sender);
+        MessageUserDto messageUserDto = userService.getUserFullName(sender);
         return messageUserDto;
     }
 }

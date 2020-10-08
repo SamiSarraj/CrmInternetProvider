@@ -17,7 +17,6 @@ public class InternetPackagesService {
         this.internetPackagesRepository = internetPackagesRepository;
     }
 
-
     public List<InternetPackages> getAllNetPackages() {
         List<InternetPackages> internetPackages = new ArrayList<>();
         internetPackagesRepository.findAll().forEach(internetPackages::add);

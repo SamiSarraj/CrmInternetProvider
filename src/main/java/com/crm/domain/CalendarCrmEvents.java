@@ -15,6 +15,7 @@ public class CalendarCrmEvents {
     private boolean allDay;
     @ManyToOne
     private User user;
+
     public User getUser() {
         return user;
     }
@@ -22,7 +23,6 @@ public class CalendarCrmEvents {
     public void setUser(User user) {
         this.user = user;
     }
-
 
 
     public Long getId() {

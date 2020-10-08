@@ -14,27 +14,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 // controller to handle tickets requests
 @RestController
 //tutaj narazie testowanie bo tak naprawde bym zrobil /ticket i uzywal authenication jak w projekcie BD
-@RequestMapping(value="/ticket")
+@RequestMapping(value = "/ticket")
 public class TicketsContoller {
-    /*
-    @GetMapping(value="")
-    public List<Tickets> getAllTicketsByTopic(String username) {
 
+    private final TicketsService ticketsService;
 
-    }*/
-    @Autowired
-    private TicketsService ticketsService;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public TicketsContoller(TicketsService ticketsService, UserService userService) {
+        this.ticketsService = ticketsService;
+        this.userService = userService;
+    }
+
     // get all tickets in the system
     @GetMapping(value = "/allTickets")
     public List<Tickets> getAllTickets() {
         return ticketsService.getAllTickets();
     }
+
     // get all tickets by a customer
     @GetMapping(value = "/byCustomerTickets/{username}")
     public List<Tickets> getAllTicketsByUser(@PathVariable String username) throws Exception {
@@ -46,6 +48,7 @@ public class TicketsContoller {
             return ticketsService.getTicketsByCustomer(username);
         }
     }
+
     // add a new ticket
     @PreAuthorize("hasAnyRole('CUSTOMER','ADMIN')")
     @PostMapping(value = "/addTicket")
@@ -58,6 +61,7 @@ public class TicketsContoller {
             return ResponseEntityHelper.jsonOkResponse();
         }
     }
+
     // get all tickets by its topic
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     @GetMapping(value = "/ticketsByTopic/{topic}")
@@ -68,6 +72,7 @@ public class TicketsContoller {
             return ticketsService.getTicketsByTopic(topic);
         }
     }
+
     // get all tickets by its importance
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     @GetMapping(value = "/ticketsByImportance/{importance}")
@@ -78,15 +83,17 @@ public class TicketsContoller {
             return ticketsService.getTicketsByImportance(importance);
         }
     }
+
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     @GetMapping(value = "/ticketsByTopicAndImportance/{topic}/{importance}")
     public List<Tickets> getAllTicketsByTopicAndState(@PathVariable String topic, @PathVariable String importance) throws Exception {
         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) throw new Exception("User not found");
         else {
-            return ticketsService.getTicketsByTopicAndImportance(topic,importance);
+            return ticketsService.getTicketsByTopicAndImportance(topic, importance);
         }
     }
+
     // get all unassigned tickets
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/unassignedTickets/getAll")
@@ -101,6 +108,7 @@ public class TicketsContoller {
         System.out.println("lalala");
         return ticketsService.getAllUnassginedTickets();
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/unassignedTickets/{id}")
     public Tickets getAnUnassignedTicket(@PathVariable Long id) throws Exception {
@@ -108,6 +116,7 @@ public class TicketsContoller {
         if (user == null) throw new Exception("User not found");
         return ticketsService.getTicketById(id);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/unassignedTickets/employee")
     public List<EmployeeTicketDto> getAllEmployeeAsignTicket() throws Exception {
@@ -115,29 +124,32 @@ public class TicketsContoller {
         if (user == null) throw new Exception("User not found");
         return ticketsService.getAllEmployeeAsignTicket();
     }
+
     // get all one customer tickts
-   @PreAuthorize("hasRole('CUSTOMER')")
-   @GetMapping(value="/allCustomerTickets")
-    public List<Tickets> getAllCustomerTickets () throws Exception {
-       User customer = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-       if (customer == null) throw new Exception("Customer not found");
-       return ticketsService.getTicketsByCustomer(customer.getUsername());
-   }
-   // get all employee ticket
-   @PreAuthorize("hasRole('EMPLOYEE')")
-   @GetMapping(value="/allEmployeeTickets")
-   public List<Tickets> getAllEmployeeTickets () throws Exception {
-       User employee = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-       if (employee == null) throw new Exception("Customer not found");
-       return ticketsService.getTicketsByEmployee(employee.getId());
-   }
-   // get employees tickets number
+    @PreAuthorize("hasRole('CUSTOMER')")
+    @GetMapping(value = "/allCustomerTickets")
+    public List<Tickets> getAllCustomerTickets() throws Exception {
+        User customer = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (customer == null) throw new Exception("Customer not found");
+        return ticketsService.getTicketsByCustomer(customer.getUsername());
+    }
+
+    // get all employee ticket
+    @PreAuthorize("hasRole('EMPLOYEE')")
+    @GetMapping(value = "/allEmployeeTickets")
+    public List<Tickets> getAllEmployeeTickets() throws Exception {
+        User employee = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (employee == null) throw new Exception("Customer not found");
+        return ticketsService.getTicketsByEmployee(employee.getId());
+    }
+
+    // get employees tickets number
     @GetMapping(value = "/getAllTicketsNumbersByEmployee")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public List<EmployeeListDto> getAllTicketsNumbersByEmployee() throws Exception {
         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) throw new Exception("User not found");
-        return  ticketsService.getAllTicketsNumbersByEmployee();
+        return ticketsService.getAllTicketsNumbersByEmployee();
 
     }
 }

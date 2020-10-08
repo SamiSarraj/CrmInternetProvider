@@ -23,27 +23,30 @@ public class MessageService {
         return new ArrayList<>(messagingRepository.findAllByUsernameRecpetorAndCheckedIsTrue(usernameReceptor));
 
     }
+
     public List<Messaging> getAllNotCheckedInbox(String usernameReceptor) {
         return new ArrayList<>(messagingRepository.findAllByUsernameRecpetorAndCheckedIsFalse(usernameReceptor));
 
     }
+
     public Messaging getOneMessage(long id, String username) throws Exception {
-        Messaging messaging =  messagingRepository.findById(id);
+        Messaging messaging = messagingRepository.findById(id);
         if (username.equals(messaging.getUsernameRecpetor()) || username.equals(messaging.getUsernameSender())) {
             messaging.setChecked(true);
             messagingRepository.save(messaging);
             return messaging;
-        }
-        else {
+        } else {
             throw new Exception("Not valid user!");
         }
     }
+
     public void createMessage(Messaging messaging, String usernameSender) {
-       messaging.setChecked(false);
-       messaging.setTime(new Date());
-       messaging.setUsernameSender(usernameSender);
-       messagingRepository.save(messaging);
+        messaging.setChecked(false);
+        messaging.setTime(new Date());
+        messaging.setUsernameSender(usernameSender);
+        messagingRepository.save(messaging);
     }
+
     public List<Messaging> getAllSentInbox(String usernameSender) {
         return new ArrayList<>(messagingRepository.findAllByUsernameSender(usernameSender));
 

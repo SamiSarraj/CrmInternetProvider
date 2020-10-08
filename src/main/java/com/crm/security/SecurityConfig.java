@@ -20,10 +20,14 @@ import static com.crm.security.Constants.PERMITTED_PATHS;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserService userService;
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+    public SecurityConfig(UserService userService, JwtAuthenticationEntryPoint unauthorizedHandler) {
+        this.userService = userService;
+        this.unauthorizedHandler = unauthorizedHandler;
+    }
 
     @Override
     @Bean

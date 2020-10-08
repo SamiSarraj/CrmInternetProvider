@@ -15,6 +15,7 @@ public class HelpDisk {
     private String content;
     @ManyToOne
     private User user;
+
     public Long getId() {
         return id;
     }
@@ -62,7 +63,6 @@ public class HelpDisk {
     public void setUser(User user) {
         this.user = user;
     }
-
 
 
 }
