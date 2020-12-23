@@ -1,0 +1,151 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-ticket"></i>
+    </div>
+    <div class="header-title">
+      <h1>Asign Ticket</h1>
+      <small>List of All Tickets</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="alert alert-danger" [hidden]="!error">
+      A Problem Has Accured!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Ticket Was Assigned!
+    </div>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Assign Tickets</h4>
+              </a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <form role="form" [formGroup]="asignTicketForm" (submit)="asignTicket()" id="asignTicketForm">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Ticket ID</label>
+                  <select class="form-control" formControlName="ticketId" name="ticketId"  required>
+                    <option *ngFor="let ticketsAsign of tickets; index as i " [value]="ticketsAsign.id" id="ticketList">{{i + 1}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Asign to</label>
+                  <select class="form-control " formControlName="employeeName" name="employeeName"  required>
+                    <option *ngFor="let empolyeess of employees" [value]="empolyeess.username">{{empolyeess.name + "resolving: " + empolyeess.resolving + "resolved: " + empolyeess.resolved + " " +empolyeess.topic}}
+                    </option>
+                  </select>
+                </div>
+                </div>
+
+              <div class="form-row">
+                <br>
+                <div class="form-group col-xs-12 ">
+                  <button type="submit" class="btn btn-add"><i class="fa fa-check"></i> Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-7">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Unassigned Tickets</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr class="info">
+                  <th>Ticket Nr</th>
+                  <th>Ticket Topic</th>
+                  <th>Subject</th>
+                  <th>Customer</th>
+                  <th>Creating Date</th>
+                  <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ticketsAsing of tickets; index as i">
+                  <td>{{i + 1}}</td>
+                  <td>{{ticketsAsing.topic}}</td>
+                  <td>{{ticketsAsing.title}}</td>
+                  <td>{{ticketsAsing.customer}}</td>
+                  <td>{{ticketsAsing.created}}</td>
+                  <td>
+                    <button type="button" class="btn btn-add btn-xs" data-toggle="modal" data-target="#details"><i class="fa fa-info-circle"></i></button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3><i class="fa fa-plus-circle m-r-5"></i>Details</h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal">
+                  <fieldset>
+                    <!-- Text input-->
+                    <div class="col-md-6 form-group">
+                      <label class="control-label">Ticket Categroy</label>
+                      <output type="text" class="form-control" disabled> </output>
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-6 form-group">
+                      <label class="control-label">Subject</label>
+                      <output type="text" class="form-control" disabled> </output>
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-6 form-group">
+                      <label class="control-label">Created</label>
+                      <output type="text" class="form-control" disabled> </output>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label class="control-label">Empolyee</label>
+                      <output type="text" class="form-control" disabled> </output>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <label class="control-label">Ticket Text</label>
+                      <textarea name="Ticket Text" rows="6" cols="70" disabled></textarea>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

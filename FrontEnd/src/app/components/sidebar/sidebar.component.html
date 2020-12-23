@@ -1,0 +1,161 @@
+<aside class="main-sidebar" [hidden]="!authenticated()">
+  <!-- sidebar -->
+  <div class="sidebar">
+    <!-- sidebar menu -->
+    <ul class="sidebar-menu">
+      <!-- MUTUAL menu -->
+      <li class="active">
+        <a href="#/home"><i class="fa fa-tachometer"></i><span>Dashboard</span>
+          <span class="pull-right-container">
+                     </span>
+        </a>
+      </li>
+      <li class="treeview" [hidden]="customer()">
+        <a href="#">
+          <i class="fa fa-users"></i><span>Customers</span>
+          <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+        </a>
+        <!-- ADMIN & EMPOLYEE> -->
+        <ul class="treeview-menu">
+          <li><a href="#/user/add-customer">Add Customer</a></li>
+          <li><a href="#/user/customers">List</a></li>
+        </ul>
+      </li>
+      <li class="treeview" [hidden]="customer()">                                   <!-- customer nie ma dostepu do pracownikow ogolnie -->
+        <a href="#">
+          <i class="fa fa-user-secret"></i><span>Employees</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [hidden]="!admin()"><a href="#/admin/add-user">Add Employee</a></li>   <!-- tylko admin ma dostep do dodawnie employee -->
+          <li><a href="#/user/users">List</a></li>
+        </ul>
+      </li>
+     <!-- //fixme: customer i Employee -->
+      <!-- dla empolyee: My new tickets, my tickets, maybe solve a tickets,  list of tickets, -->
+      <!-- dla customera: My tickets, create new tickets --->
+      <li class="treeview">       <!-- tutaj kazdy bedzie miał innaczej, narazie admin to ma assign ticket i lista -->
+        <a href="#">
+          <i class="fa fa-ticket"></i><span>Tickets</span>
+          <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [hidden]="!customer()" ><a href="#/customer/ticket/create">Create Ticket</a> </li>
+          <li [hidden]="!admin()"><a href="#/admin/ticket/asign">Asign Ticket</a></li>
+          <li [hidden]="!admin()"><a href="#/admin/ticket/list">List of All Tickets</a> </li>
+          <li [hidden]="!employee()"><a href="#/employee/ticket/list">My Tickets</a></li>
+          <li [hidden]="!customer()"><a href="#/customer/ticket/list">My Tickets</a> </li>
+        </ul>
+      </li>
+      <!-- //fixme: customer i Employee -->
+      <!-- dla employee: lista planow, moze approve a plan -->
+      <!-- dla customera: my plans, sumbit a plan -->
+      <!-- dla admin: approve a plan, lista planow -->
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-arrow-circle-o-right"></i><span>Internet Plan</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [hidden]="customer()"><a href="#/user/net-plans/asign">Asign Net Plans</a></li>  <!-- narazie tylko admin -->
+          <li [hidden]="!customer()"><a href="#/customer/net-plans/list">My  Plans</a></li>  <!-- narazie tylko admin -->
+          <li [hidden]="customer()"><a href="#/user/net-plans/list">List Of Plans</a></li>
+        </ul>
+      </li>
+      <!-- //fixme: customer i Employee -->
+      <!-- dla admin: Approve a package, lista packietow -->
+      <!-- dla empolyee: New package, lista packietow -->
+      <!-- dla customera: Moj packiet, lista packietow (moze byc razem) -->
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-internet-explorer"></i><span>Internet Packages</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li [hidden]="customer()"><a href="#/user/net-packages/create">New Package</a></li>
+          <li><a href="#/net-packages/list">List Of Packages</a></li>
+        </ul>
+      </li>
+      <!-- tutaj wszyscy uzytkownikow mają tak samo -->
+      <li>
+        <a href="#/messages/inbox">
+          <i class="fa fa-envelope-o"></i> <span>Message</span>
+          <span class="pull-right-container">
+                     </span>
+        </a>
+      </li>
+      <li class="treeview" [hidden]="!admin()">
+        <a href="#/admin/notifications">
+          <i class="fa fa-comment"></i><span>Notifications</span>
+          <span class="pull-right-container">
+                     </span>
+        </a>
+      </li>
+      <!-- narazie tylko admin i employee maja -->
+      <li class="treeview" [hidden]="customer()">
+        <a href="#/user/charts/chart-js">
+          <i class="fa fa-pie-chart"></i><span>Statics Charts</span>
+          <span class="pull-right-container">
+                     </span>
+        </a>
+      </li>
+      <!-- tylko admin, moze employee -->
+      <li class="treeview">
+        <a href="#/calendar">
+          <i class="fa fa-calendar"></i> <span>Calender</span>
+          <span class="pull-right-container">
+                     </span>
+        </a>
+      </li>
+      <li class="treeview" [hidden]="customer()">
+        <a href="#">
+          <i class="fa fa-info-circle"></i><span>Help Desk</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#/user/help-disk/add-new">Add New</a></li>  <!-- narazie tylko admin -->
+          <li><a href="#/user/help-disk/list">List</a></li>
+        </ul>
+      </li>
+      <li class="treeview" [hidden]="admin()">
+        <a href="#">
+          <i class="fa fa-user-circle"></i><span>Profile</span>
+          <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+        </a>
+          <ul class="treeview-menu">
+            <li [hidden]="!employee()"><a href="#/employee/myProfile">My Profile</a></li>  <!-- narazie tylko admin -->
+            <li><a href="#/user/modifyProfile">Edit Profile</a></li>
+          </ul>
+      </li>
+      <!-- tylko admin
+      <li class="treeview" [hidden]="!admin()">
+        <a href="#">
+          <i class="fa fa-list"></i>
+          <span>Utilities</span>
+          <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="ativitylog.html">Activity Log</a></li>
+          <li><a href="systemsts.html">System status</a></li>
+        </ul>
+      </li> -->
+    </ul>
+  </div>
+  <!-- /.sidebar -->
+</aside>

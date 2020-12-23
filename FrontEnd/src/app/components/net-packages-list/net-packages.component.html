@@ -1,0 +1,178 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Net Packages</h1>
+      <small>Net Packages</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Plans</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="btn-group">
+                <button class="btn btn-exp btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+                <ul class="dropdown-menu exp-drop" role="menu">
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'false'});">
+                      <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});">
+                      <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON (ignoreColumn)</a>
+                  </li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'true'});">
+                    <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON (with Escape)</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'xml',escape:'false'});">
+                    <img src="assets/dist/img/xml.png" width="24" alt="logo"> XML</a>
+                  </li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'sql'});">
+                    <img src="assets/dist/img/sql.png" width="24" alt="logo"> SQL</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'csv',escape:'false'});">
+                      <img src="assets/dist/img/csv.png" width="24" alt="logo"> CSV</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'txt',escape:'false'});">
+                      <img src="assets/dist/img/txt.png" width="24" alt="logo"> TXT</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'excel',escape:'false'});">
+                      <img src="assets/dist/img/xls.png" width="24" alt="logo"> XLS</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'doc',escape:'false'});">
+                      <img src="assets/dist/img/word.png" width="24" alt="logo"> Word</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'powerpoint',escape:'false'});">
+                      <img src="assets/dist/img/ppt.png" width="24" alt="logo"> PowerPoint</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'png',escape:'false'});">
+                      <img src="assets/dist/img/png.png" width="24" alt="logo"> PNG</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});">
+                      <img src="assets/dist/img/pdf.png" width="24" alt="logo"> PDF</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>Title</th>
+                    <th>Modem</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Speed</th>
+                    <th>Contract</th>
+                    <th [hidden]="customer()">Modify</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let packages of netPackages">
+                    <td>{{packages.title}}</td>
+                    <td>{{packages.modem}}</td>
+                    <td>{{packages.price}}</td>
+                    <td>{{packages.type}}</td>
+                    <td>{{packages.speed}}</td>
+                    <td>{{packages.contract}}</td>
+                    <button type ="button" [hidden]="customer()" (click) = "packageId = packages.id "  class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="customer1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3><i class="fa fa-user m-r-5"></i> Update User</h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal" role="form" [formGroup]="modifyPackageForm" (submit)="modifyPackage()" id="updateUserForm">
+                  <fieldset>
+                    <!-- Text input-->
+                    <div class="col-md-4 form-group">
+                      <label class="control-label">Title:</label>
+                      <input type="text" placeholder="User Name" class="form-control" formControlName="firstName">
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-4 form-group">
+                      <label class="control-label">Modem:</label>
+                      <input type="text" placeholder="Last Name" class="form-control" formControlName="lastName">
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-4 form-group">
+                      <label class="control-label">Price: </label>
+                      <input type="number" placeholder="Mobile" class="form-control" formControlName="mobile">
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label class="control-label">Type</label><br>
+                      <select class="form-control" formControlName="Type">
+                        <option *ngFor="let packtype of packageType" [value]="packtype.name" >{{packtype.name}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Contract</label><br>
+                      <select class="form-control" formControlName="Type">
+                        <option *ngFor="let contracts of contract" [value]="contracts.name" >{{contracts.name}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-12 form-group user-form-group">
+                      <div class="pull-right">
+                        <button type="button" (click)="reset()" class="btn btn-danger btn-sm">Reset</button>
+                        <button type="submit" class="btn btn-add btn-sm">Save</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- customer Modal1 -->
+    <!-- /.modal -->
+  </section>
+  <!-- /.content -->
+</div>

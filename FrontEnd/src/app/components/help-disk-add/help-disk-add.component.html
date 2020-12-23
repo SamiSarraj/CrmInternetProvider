@@ -1,0 +1,66 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Add Help</h1>
+      <small>Help Disk</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+     Help Has Been Added!
+    </div>
+    <div class="row">
+      <!-- Form controls -->
+      <div class="col-sm-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonlist">
+              <a class="btn btn-add " href="#/user/help-disk/list">
+                <i class="fa fa-list"></i>  Help Disk List </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addHelpForm" (submit)="addHelp()" id="addHelp">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Title</label>
+                  <input type="text" class="form-control" formControlName="title"  id="title" name="title" placeholder="Enter Title Here" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Topic</label>
+                  <select class="form-control" formControlName="topic1" name="topic">
+                    <option *ngFor="let field of topic" [value]="field.name">{{field.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Content</label>
+                  <textarea class="form-control" formControlName="content"  id="content" name="contnent" rows="6" required></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                  <div class="reset-button">
+                    <button type="reset" (click)="reset()" style="margin:5px;" class="btn btn-warning">Reset</button>
+                    <button type="submit"  style="margin:5px;" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

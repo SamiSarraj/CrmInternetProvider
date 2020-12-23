@@ -1,0 +1,154 @@
+<div class="content-wrapper">
+
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-dashboard"></i>
+    </div>
+    <div class="header-title">                  <!-- welcome page -->
+      <h1>CRM Dashboard</h1>
+      <small> </small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+        <div id="cardbox1">
+          <div class="statistic-box">
+            <i class="fa fa-users fa-3x"></i>
+            <div class="counter-number pull-right">
+              <span class="count-number"> {{amount.amount && amount?.amount[0]}} </span>
+              <span class="slight"><i class="fa fa-play fa-rotate-270"> </i>
+                              </span>
+            </div>
+            <h3>Clients</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+        <div id="cardbox2">
+          <div class="statistic-box">
+            <i class="fa fa-user-secret fa-3x"></i>
+            <div class="counter-number pull-right">
+              <span class="count-number"> {{amount.amount && amount?.amount[1]}} </span>
+              <span class="slight"><i class="fa fa-play fa-rotate-270"> </i>
+                              </span>
+            </div>
+            <h3>Employee</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+        <div id="cardbox3">
+          <div class="statistic-box">
+            <i class="fa fa-user-circle fa-3x"></i>
+            <div class="counter-number pull-right">
+              <span class="count-number"> {{amount.amount && amount?.amount[2]}} </span>
+              <span class="slight"><i class="fa fa-play fa-rotate-270"> </i>
+                              </span>
+            </div>
+            <h3>Admins</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+        <div id="cardbox4">
+          <div class="statistic-box">
+            <i class="fa fa-files-o fa-3x"></i>
+            <div class="counter-number pull-right">
+              <span class="count-number"> {{amount.amount && amount?.amount[3]}} </span>
+              <span class="slight"><i class="fa fa-play fa-rotate-270"> </i>
+                              </span>
+            </div>
+            <h3>Tickets</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Tickets</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="runnigwork">
+              <span class="label-success label label-default pull-right">Completed</span>
+              <i class="fa fa-dot-circle-o"></i>
+              <a> Completed</a><br>
+              <div class="progress runningprogress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" [style.width] ="amountTickets.amount && (amountTickets?.amount[0]/ amountTickets?.amount[4])*100+'%'"  aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" attr.data-original-title="{{amountTickets.amount && (amountTickets?.amount[0]/amountTickets?.amount[4])*100}}%"></div>
+              </div>
+            </div>
+            <div class="runnigwork">
+              <span class="label-danger label label-default pull-right">Failed</span>
+              <i class="fa fa-dot-circle-o"></i>
+              <a> Failed</a><br>
+              <div class="progress runningprogress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" [style.width] ="amountTickets.amount && (amountTickets?.amount[1]/ amountTickets?.amount[4])*100+'%'"  aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" attr.data-original-title="{{amountTickets.amount && (amountTickets?.amount[1]/amountTickets?.amount[4])*100}}%"></div>
+              </div>
+            </div>
+            <div class="runnigwork">
+              <span class="label-warning label label-default pull-right">Need Attention</span>
+              <i class="fa fa-dot-circle-o"></i>
+              <a> Need Attention</a><br>
+              <div class="progress runningprogress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" [style.width] ="amountTickets.amount && (amountTickets?.amount[2]/ amountTickets?.amount[4])*100+'%'"  aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" attr.data-original-title="{{amountTickets.amount && (amountTickets?.amount[2]/amountTickets?.amount[4])*100}}%"></div>
+              </div>
+            </div>
+            <div class="runnigwork">
+              <span class="label-info label label-default pull-right">Resolving </span>
+              <i class="fa fa-dot-circle-o"></i>
+              <a> Resolving </a><br>
+              <div class="progress runningprogress">
+                <div class="progress-bar progress-bar-striped" role="progressbar" [style.width] ="amountTickets.amount && (amountTickets?.amount[3]/ amountTickets?.amount[4])*100+'%'"   aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" attr.data-original-title="{{amountTickets.amount && (amountTickets?.amount[3]/amountTickets?.amount[4])*100}}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Top Workers</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="Workslist">
+              <div class="worklistdate">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Number Of Tickets</th>
+                    <th>Tickets Solved</th>
+                    <th>Rating</th>
+                    <th>Contribution To Help Desk</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let topWorker of topWorkers" class="info">
+                    <td (click)="goToEmployee(topWorker.employeeId)">{{topWorker.employeeName}}</td>
+                    <td>{{topWorker.ticketNumber}}</td>
+                    <td>{{topWorker.ticketCompleted}}</td>
+                    <td>{{topWorker.rating}}</td>
+                    <td>{{topWorker.helpDisk}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>

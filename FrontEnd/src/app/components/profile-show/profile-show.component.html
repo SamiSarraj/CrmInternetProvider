@@ -1,0 +1,144 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon"><i class="fa fa-user-circle-o"></i></div>
+    <div class="header-title">
+      <h1>Profile</h1>
+      <small>User Profile</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued! You Commented Before!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Comment Has Been Added!
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-headshot"></div>
+          </div>
+          <div class="card-content">
+            <div class="card-content-member text-center">
+              <h4 class="m-t-0" style="margin-top:5px;">{{user.firstName}}</h4>
+              <p class="m-t-0">{{user.lastName}}</p>
+            </div>
+            <div class="card-content-languages">
+              <div class="card-content-languages-group">
+                <div>
+                  <h4>Mobile:</h4>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      {{user.mobile}}
+                      <div class="fluency fluency-4"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-content-languages-group">
+                <div>
+                  <h4>Email:</h4>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      {{user.email}}
+                      <div class="fluency fluency-4"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-content-languages-group">
+                <div>
+                  <h4>Employee Role:</h4>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      {{user.employeeRole}}
+                      <div class="fluency fluency-4"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="rating-block">
+              <h4>Average user rating</h4>
+              <h2 class="m-b-20">{{user.averageRating}}<small>/ 5</small></h2>
+            </div>
+          </div>
+        </div>
+        <div class="review-block">
+          <div class="row" *ngFor="let comments of user.comments">
+            <div class="col-sm-3">
+              <div class="review-block-img">
+                <img src="assets/dist/img/avatar3.png" class="img-rounded" alt="">
+              </div>
+              <div class="review-block-name">{{comments.fullName}}</div>
+              <div class="review-block-date">{{comments.created}}</div>
+            </div>
+            <div class="col-sm-9">
+              <div class="review-block-rate" *ngFor="let rate of comments.rates">
+
+                <button type="button" class="btn btn-rating btn-xs" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="review-block-description">{{comments.content}}</div>
+            </div>
+          </div>
+        </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="panel panel-bd lobidrag">
+                  <div class="panel-heading">
+                    <div class="btn-group" id="buttonexport">
+                      <a href="#">
+                        <h4>Comments</h4>
+                      </a>
+                    </div>
+                  </div>
+            <div class="panel-body">
+            <form role="form" [formGroup]="addCommentAndRatingForm" (submit)="addCommentAndRating()" id="addComment">
+              <div class="form-row" >
+                <div class="form-group col-xs-6">
+                  <label>Add Comment</label>
+                  <textarea  class="form-control" formControlName="comment"  placeholder="Enter Comment" id="comment" name="comment" rows="4" required>></textarea>
+                </div>
+                <div class="form-group col-xs-3">
+                  <label>Rating</label>
+                  <select class="form-control" formControlName="rating" name="rating"  required >
+                    <option *ngFor="let rate of rating" [value]="rate.rate">{{rate.rate}}</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-9 col-xs-offset-4 col-lg-offset-5">
+                    <div class="reset-button">
+                      <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <!-- /.content -->

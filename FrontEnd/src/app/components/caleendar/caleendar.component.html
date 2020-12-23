@@ -1,0 +1,79 @@
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon"><i class="fa fa-calendar-o"></i></div>
+    <div class="header-title">
+      <h1>Calender</h1>
+      <small>Show Events</small>
+    </div>
+  </section>
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Event Has Been Added!
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <div class="panel panel-bd">
+          <div class="panel-body">
+            <div id='external-events'>
+              <form role="form" [formGroup]="addEventForm" (submit)="addEvent()" id="addUserForm">
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Title</label>
+                  <input type="text" class="form-control" formControlName="title"  id="title" name="title" placeholder="Enter Title" required>
+                </div>
+              </div>
+                <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Start: </label>
+                  <input type="datetime-local" class="form-control" formControlName="start"  id="start" name="start" placeholder="Enter Start" required>
+                </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-12">
+                    <label>End: </label>
+                    <input type="datetime-local" class="form-control" formControlName="end"  id="end" name="end" placeholder="Enter end" required>
+                  </div>
+                </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>All Day:</label><br>
+                  <label class="radio-inline"><input name="allDay" checked="checked" type="radio" formControlName="allDay" value=true id="allDay">True</label>
+                  <label class="radio-inline"><input name="allDay" type="radio" formControlName="allDay"  value="false" id="allDay">False</label>
+                </div>
+              </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                    <div class="reset-button">
+                      <button type="reset" style="margin:5px;" (click)="reset()" class="btn btn-warning">Reset</button>
+                      <button type="submit" style="margin:5px;" class="btn btn-success">Save</button>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-9">
+        <div class="panel panel-bd">
+          <div class="panel-body">
+            <div>
+<p>Display event : {{displayEvent | json}}</p>
+<div *ngIf="calendarOptions">
+  <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+                   (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

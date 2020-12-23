@@ -1,0 +1,88 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Add Package</h1>
+      <small>Package List</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Package Has Been Added!
+    </div>
+    <div class="row">
+      <!-- Form controls -->
+      <div class="col-sm-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonlist">
+              <a class="btn btn-add " href="#/net-packages/list">
+                <i class="fa fa-list"></i>  Package List </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addPackageForm" (submit)="addPackage()" id="addPackageForm">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Title</label>
+                  <input type="text" class="form-control" formControlName="title"  id="title" name="title" placeholder="Enter Title" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Modem Name</label>
+                  <input type="text" class="form-control" formControlName="modem"  id="modem" name="modem" placeholder="Enter Modem Name" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Data</label>
+                  <input type="email" class="form-control" formControlName="data"  id="data" name="data" placeholder="Enter Data" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Price</label>
+                  <input type="number" class="form-control" formControlName="price"  id="price" name="price" placeholder="Enter Price" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Speed</label>
+                  <input type="text" class="form-control" formControlName="speed"  id="city" name="speed" placeholder="Enter speed" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Type</label>
+                  <select class="form-control" formControlName="type" name="type" id="type" required >
+                    <option *ngFor="let list1 of packageType" [value]="list1.name">{{list1.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Contract</label>
+                  <select class="form-control" formControlName="contract" name="contract" id="contract" required >
+                    <option *ngFor="let list of contract" [value]="list.contract">{{list.contract}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                  <div class="reset-button">
+                    <button type="reset" style="margin:5px;" (click)="reset()" class="btn btn-warning">Reset</button>
+                    <button type="submit" style="margin:5px;" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

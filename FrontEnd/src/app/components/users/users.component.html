@@ -1,0 +1,169 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Employees</h1>
+      <small>Employees List</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Empolyee</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="btn-group">
+                <div class="buttonexport" id="buttonlist">
+                  <a class="btn btn-add" href="#/admin/add-user"> <i class="fa fa-plus"></i> Add User
+                  </a>
+                </div>
+                <button class="btn btn-exp btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+                <ul class="dropdown-menu exp-drop" role="menu">
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'false'});">
+                      <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});">
+                      <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON (ignoreColumn)</a>
+                  </li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'json',escape:'true'});">
+                    <img src="assets/dist/img/json.png" width="24" alt="logo"> JSON (with Escape)</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'xml',escape:'false'});">
+                    <img src="assets/dist/img/xml.png" width="24" alt="logo"> XML</a>
+                  </li>
+                  <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'sql'});">
+                    <img src="assets/dist/img/sql.png" width="24" alt="logo"> SQL</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'csv',escape:'false'});">
+                      <img src="assets/dist/img/csv.png" width="24" alt="logo"> CSV</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'txt',escape:'false'});">
+                      <img src="assets/dist/img/txt.png" width="24" alt="logo"> TXT</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'excel',escape:'false'});">
+                      <img src="assets/dist/img/xls.png" width="24" alt="logo"> XLS</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'doc',escape:'false'});">
+                      <img src="assets/dist/img/word.png" width="24" alt="logo"> Word</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'powerpoint',escape:'false'});">
+                      <img src="assets/dist/img/ppt.png" width="24" alt="logo"> PowerPoint</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'png',escape:'false'});">
+                      <img src="assets/dist/img/png.png" width="24" alt="logo"> PNG</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="$('#dataTableExample1').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});">
+                      <img src="assets/dist/img/pdf.png" width="24" alt="logo"> PDF</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Tickets</th>
+                    <th>Completed Tickets</th>
+                    <th>Resolving Tickets</th>
+                    <th>Need Attention</th>
+                    <th>Failed Tickets</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.employeeFullName}}</td>
+                    <td>{{user.mobile}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.tickets}}</td>
+                    <td>{{user.completedTickets}}</td>
+                    <td>{{user.resolvingTickets}}</td>
+                    <td>{{user.needAttentionTickets}}</td>
+                    <td>{{user.failedTickets}}</td>
+                    <td>
+                      <button (click)=getUserUsername(user.userUsername) type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- customer Modal1 -->
+    <div class="modal fade" id="customer1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3><i class="fa fa-user m-r-5"></i> Update User</h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal" role="form" [formGroup]="updateUserForm" (submit)="updateUser()" id="updateUserForm">
+                  <fieldset>
+                    <!-- Text input-->
+                    <div class="form-group col-md-6">
+                      <label>Type</label><br>
+                      <label class="radio-inline"><input name="role" value="EMPLOYEE" checked="checked" type="radio" formControlName="role">Employee</label>
+                      <label class="radio-inline"><input name="role" value="ADMIN" type="radio" formControlName="role">Admin</label>
+                    </div>
+                    <div class="col-md-12 form-group user-form-group">
+                      <div class="pull-right">
+                        <button type="button" class="btn btn-danger btn-sm">Reset</button>
+                        <button type="submit" class="btn btn-add btn-sm">Save</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Modal -->
+    <!-- Customer Modal2 -->
+    <!-- /.modal -->
+  </section>
+  <!-- /.content -->
+</div>

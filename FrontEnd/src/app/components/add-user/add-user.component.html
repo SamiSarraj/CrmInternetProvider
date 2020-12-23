@@ -1,0 +1,141 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Add Employee</h1>
+      <small> </small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+      <div class="alert alert-danger" [hidden]="!error">
+        Username Occupied!
+      </div>
+      <div class="alert alert-success" [hidden]="!success">
+        New Customer Has Been Added!
+      </div>
+    <div class="row">
+      <!-- Form controls -->
+      <div class="col-sm-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonlist">
+              <a class="btn btn-add " href="#/user/users">
+                <i class="fa fa-list"></i> Employee List </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addUserForm" (submit)="addUser()" id="addUserForm">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" formControlName="firstName"  id="firstName" name="firstName" placeholder="Enter First Name" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" formControlName="lastName"  id="lastName" name="lastName" placeholder="Enter last Name" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Email</label>
+                  <input type="email" class="form-control" formControlName="email"  id="email" name="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Mobile</label>
+                  <input type="number" class="form-control" formControlName="mobile"  id="mobile" name="mobile" placeholder="Enter Mobile" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Country</label>
+                  <input type="text" class="form-control" formControlName="country"  id="country" name="country" placeholder="Enter Country" required>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>City</label>
+                  <input type="text" class="form-control" formControlName="city"  id="city" name="city" placeholder="Enter City" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Address</label>
+                  <textarea class="form-control" formControlName="address"  id="address" name="address" rows="3" required></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Username</label>
+                  <input type="text" class="form-control" placeholder="Enter Username" formControlName="username" name="username" id="username" required>
+                  <div
+                    *ngIf="addUserForm.controls['username'].invalid && (addUserForm.controls['username'].dirty || addUserForm.controls['username'].touched)"
+                    class="text-danger">
+                    Cant Be Empty
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Password</label>
+                  <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" name="password" id="password"  required>
+                  <div
+                    *ngIf="addUserForm.controls['password'].invalid && (addUserForm.controls['password'].dirty || addUserForm.controls['password'].touched)"
+                    class="text-danger">
+                    Cant Be Empty
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Date of Birth</label>
+                  <input id='datepicker' type="text" class="form-control" formControlName="dateOfBirth" name="dateOfBirth" placeholder="Enter Date...">
+                </div>
+                <div class="form-group col-xs-3">
+                  <label>Type</label><br>
+                  <label class="radio-inline"><input name="type" formControlName="role" value="EMPLOYEE"  id="employee" checked type="radio">Employee</label>
+                  <label class="radio-inline"><input name="type" formControlName="role" value="ADMIN" id="admin" type="radio">Admin</label>
+                  <div
+                    *ngIf="addUserForm.controls['role'].invalid && (addUserForm.controls['role'].dirty || addUserForm.controls['role'].touched)"
+                    class="text-danger">
+                    Cant Be Empty
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-3">
+                  <label>Sex</label><br>
+                  <label class="radio-inline"><input name="sex" checked="checked" type="radio" formControlName="sex" value=Female id="sexMale">Male</label>
+                  <label class="radio-inline"><input name="sex" type="radio" formControlName="sex"  value="Male" id="sexFemale">Female</label>
+                </div>
+                <div class="form-group col-xs-12">
+                  <label>Speciality</label>
+                  <select class="form-control" formControlName="employeeRole" name="employeeRole"  required>
+                   <option *ngFor="let topicso of topic" [value]="topicso.name">{{topicso.name}}</option>
+                  </select>
+                  <div
+                    *ngIf="addUserForm.controls['employeeRole'].invalid && (addUserForm.controls['employeeRole'].dirty || addUserForm.controls['employeeRole'].touched)"
+                    class="text-danger">
+                    Cant Be Empty
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                  <div class="reset-button">
+                    <button type="reset" style="margin:5px;"  (click)="reset()" class="btn btn-warning">Reset</button>
+                    <button type="submit" style="margin:5px;" [disabled]="addUserForm.controls['username'].invalid || addUserForm.controls['password'].invalid
+                    || addUserForm.controls['employeeRole'].invalid
+                    || addUserForm.controls['role'].pristine"
+                            class="btn btn-success">Save</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

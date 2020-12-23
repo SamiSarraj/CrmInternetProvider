@@ -1,0 +1,76 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon"><i class="fa fa-calendar-o"></i></div>
+    <div class="header-title">
+      <h1>Help Disk</h1>
+      <small>Help Disk List</small>
+    </div>
+  </section>
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <div class="panel panel-bd">
+          <div class="panel-body">
+            <div id='external-events'>
+              <form role="form" [formGroup]="pickFieldForm" (submit)="pickField()" id="addUserForm">
+                <div class="form-row">
+                  <div class="form-group col-xs-12">
+                    <label>Field</label>
+                    <select class="form-control" formControlName="topic1" name="topic">
+                      <option *ngFor="let field of topic" [value]="field.name">{{field.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-12 col-xs-offset-3 col-lg-offset-4">
+                    <button type="submit" class="btn btn-success">Show</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-9" [hidden]="hidden">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Topics</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-12">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>Topic</th>
+                    <th>Title</th>
+                    <th>Published By</th>
+                    <th>Comments</th>
+                    <th>Details</th>
+                  </tr>
+                  </thead>
+                  <tbody> <tr *ngFor="let helpDisks of helpDisk">
+                    <td>{{helpDisks.topic}}</td>
+                    <td>{{helpDisks.title}}</td>
+                    <td>{{helpDisks.publishedBy}}</td>
+                    <td>{{helpDisks.created}}</td>
+                    <td>
+                    <button type="button" class="btn btn-add btn-sm" (click)="goToHelpDisk(helpDisks.id)"><i class="fa fa-pencil"></i></button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

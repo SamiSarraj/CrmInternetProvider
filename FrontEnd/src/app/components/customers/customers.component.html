@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Customer</h1>
+      <small>Customer List</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Customer List</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="btn-group">
+                <div class="buttonexport" id="buttonlist">
+                  <a class="btn btn-add" href="#/user/add-customer"> <i class="fa fa-plus"></i> Add Customer
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+            <div class="col-xs-12">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>Customer Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Sex</th>
+                    <th>Joined</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let customer of customers">
+                    <!--<td><img src="assets/dist/img/w1.png" class="img-circle" alt="User Image" width="50" height="50"> </td>-->
+                    <td>{{customer.userInformation.firstName + " " + customer.userInformation.lastName}}</td>
+                    <td>{{customer.userInformation.mobile}}</td>
+                    <td>{{customer.userInformation.email}}</td>
+                    <td>{{customer.userInformation.address}}</td>
+                    <td>{{customer.userInformation.sex}}</td>
+                    <td>{{customer.userInformation.joined}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- customer Modal1 -->
+    <!-- /.modal -->
+    <!-- Modal -->
+    <!-- Customer Modal2 -->
+
+    <!-- /.modal -->
+  </section>
+</div>

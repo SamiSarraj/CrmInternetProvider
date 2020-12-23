@@ -1,0 +1,161 @@
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Ticket</h1>
+      <small>Details</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Comment Has Been Added!
+    </div>
+    <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Ticket Details</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+              <form role="form">
+                <div class="form-row">
+                  <div class="form-group col-xs-6">
+                    <label>Title</label>
+                    <output type="text" class="form-control" disabled>{{ticket.title}}</output>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label>Topic</label>
+                    <output type="text" class="form-control" disabled> {{ticket.topic}}</output>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-4">
+                    <label>Created</label>
+                    <output type="date" class="form-control" disabled>{{ticket.created}}</output>
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label>Importance</label>
+                    <output type="text" class="form-control" disabled> {{ticket.importance}}</output>
+                  </div>
+                </div>
+                  <div class="form-group col-xs-4">
+                    <label>Employee Responsible</label>
+                    <output type="text" class="form-control" (click)="goToUser(ticket.employeeId)" disabled> {{ticket.employeeName}}</output>
+                  </div>
+
+                <div class="form-row">
+                  <div class="form-group col-xs-12">
+                    <label>Content</label>
+                    <textarea class="form-control" disabled rows="9">{{ticket.content}}</textarea>
+                  </div>
+                </div>
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let comments of ticket.commentsTicket">
+    <div class="review-block">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="review-block-img">
+            <img src="assets/dist/img/avatar.png" class="img-rounded" alt="">
+          </div>
+          <div class="review-block-name">{{comments.fullNameUser}}</div>
+          <div class="review-block-date">{{comments.created}}</div>
+        </div>
+        <div class="col-xs-9">
+          <div class="review-block-description">{{comments.content}}</div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+    <div class="row" [hidden]="employee()">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Comments</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addCommentForm" (submit)="addComment()" id="addComment">
+              <div class="form-row" >
+                <div class="form-group col-xs-12">
+                  <label>Add Comment</label>
+                  <textarea  class="form-control" formControlName="comment"  placeholder="Enter Comment" id="comment" name="comment" rows="4" required>></textarea>
+                </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                  <div class="reset-button">
+                    <button type="submit" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" [hidden]="!employee()">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Comments</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addCommentForm2" (submit)="addComment2()" id="addComment2">
+              <div class="form-row" >
+                <div class="form-group col-xs-9">
+                  <label>Add Comment</label>
+                  <textarea  class="form-control" formControlName="comment"  placeholder="Enter Comment" id="comment2" name="comment" rows="4" required>></textarea>
+                </div>
+                <div class="form-group col-xs-3">
+                  <label formControlName>Change Status</label>
+                  <select class="form-control" formControlName="state" name="state" >
+                    <option *ngFor="let status of state" [value]="status.name">{{status.name}}</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                    <div class="reset-button">
+                      <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- customer Modal1 -->
+    <!-- /.modal -->
+  </section>
+  <!-- /.content -->
+</div>
+

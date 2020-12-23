@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Create Ticket</h1>
+      <small>Create Ticket</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Ticket Has Been Submitted!
+    </div>
+    <div class="row">
+      <!-- Form controls -->
+      <div class="col-sm-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonlist">
+              <a class="btn btn-add ">
+                <i class="fa fa-list"></i>  Create Ticket </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form role="form" [formGroup]="addTicketForm" (submit)="addTicket()" id="addTicketForm">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Topic</label>
+                  <select class="form-control" formControlName="topic" name="topic" id="topic" required >
+                    <option  *ngFor="let topic of Topics" [value]="topic.name">{{topic.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Ticket Title </label>
+                  <input type="text" class="form-control" formControlName="title"  id="title" name="title" placeholder="Enter Title Of The Ticket" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Content</label>
+                  <textarea class="form-control" formControlName="content"  placeholder="Ticket Content" id="content" name="content" rows="8" required></textarea>
+                </div>
+                <div
+                  *ngIf="addTicketForm.controls['content'].invalid && (addTicketForm.controls['content'].dirty || addTicketForm.controls['content'].touched)"
+                  class="text-danger">
+                  Cant Be Empty
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12">
+                  <label>Importance</label>
+                  <input type="text" class="form-control" placeholder="importance" formControlName="importance" name="importance" id="importance" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-xs-12 col-xs-offset-4 col-lg-offset-5">
+                  <div class="reset-button">
+                    <button type="reset" (click)="reset()" class="btn btn-warning">Reset</button>
+                    <button type="submit" style="margin:5px;" [disabled]="addTicketForm.controls['content'].invalid || addTicketForm.controls['topic'].invalid" class="btn btn-success">Save</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

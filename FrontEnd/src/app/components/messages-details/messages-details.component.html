@@ -1,0 +1,68 @@
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="mailbox">
+          <div class="mailbox-header">
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="inbox-avatar">
+                  <i class="fa fa-user-circle fa-lg"></i>
+                  <div class="inbox-avatar-text hidden-xs hidden-sm">
+                    <div><small>Messages</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-8">
+                <div class="inbox-toolbar btn-toolbar">
+                  <div class="btn-group">
+                    <a href="#/messages/inbox" class="btn btn-default"><span class="fa fa-long-arrow-left"></span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mailbox-body">
+            <div class="row m-0">
+              <div class="col-sm-3 p-0 inbox-nav hidden-xs hidden-sm">
+                <div class="mailbox-sideber">
+                  <div class="profile-usermenu">
+                    <h6>Messages box</h6>
+                    <ul class="nav">
+                      <li class="active"><a href="#/messages/inbox"><i class="fa fa-inbox"></i> Inbox <small class="label pull-right bg-green"></small></a></li>
+                      <li><a href="#/messages/sent"><i class="fa fa-envelope-o"></i> Send Mail</a></li>
+                    </ul>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail">
+                <div class="inbox-avatar p-20 border-btm">
+                  <img src="assets/dist/img/avatar5.png" class="border-green hidden-xs hidden-sm" alt="">
+                  <div class="inbox-avatar-text">
+                    <div class="avatar-name"><strong>From: </strong>
+{{message.usernameSender}}              </div>
+                    <div><small><strong>Subject: </strong> {{message.subject}}</small></div>
+                  </div>
+                  <div class="inbox-date text-right hidden-xs hidden-sm">
+                    <div><small>{{message.time}}</small></div>
+                  </div>
+                </div>
+                <div class="inbox-mail-details p-20">
+                  <textarea disabled rows="9" cols="120">{{message.content}}</textarea>
+                  </div>
+                  <div class="m-t-20 border-all p-20">
+                    <p class="p-b-20">click here to <a href="#/compose">Reply</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </section>
+  <!-- /.content -->
+
+</div>

@@ -1,0 +1,41 @@
+
+<div class="login-wrapper">
+  <div class="alert alert-danger" [hidden]="!error">
+    Username Or Password Is Wrong!
+  </div>
+  <div class="container-center">
+    <div class="login-area">
+      <div class="panel panel-bd panel-custom">
+        <div class="panel-heading">
+          <div class="view-header">
+            <div class="header-icon">
+              <i class="pe-7s-unlock"></i>
+            </div>
+            <div class="header-title">
+              <h3>Login</h3>
+              <small><strong>Please enter your credentials to login.</strong></small>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <form role="form" [formGroup]="loginForm" (submit)="login()" id="loginForm" >
+            <div class="form-group">
+              <label class="control-label" for="username">Username</label>
+              <input type="text" placeholder="example@gmail.com" formControlName="username"  title="Please enter you username" required value="" name="username" id="username" class="form-control">
+              <span class="help-block small">Your unique username to app</span>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="password">Password</label>
+              <input type="password" title="Please enter your password" placeholder="******" required formControlName="password" value="" name="password" id="password" class="form-control">
+              <span class="help-block small">Your strong password</span>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-add">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="login.js"> </script>

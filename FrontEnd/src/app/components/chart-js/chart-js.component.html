@@ -1,0 +1,102 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-bar-chart"></i>
+    </div>
+    <div class="header-title">
+      <h1>Chart js</h1>
+      <small>Simple yet flexible JavaScript charting for designers & developers</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <!-- Bar Chart -->
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Tickets Whole Year</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countTicketsByMonth" height="100">{{chartTicketsByMonth}}</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>New Users Number</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countCustomersAndEmployeesByMonth" height="150">{{chartCountCustomersAndEmployees}}</canvas>
+          </div>
+        </div>
+      </div>
+      <!-- Radar Chart -->
+      <div class="col-xs-4">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Net Packages</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countNetPlansByPackages" height="325">{{chartCountNetPlansByPackage}}</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Line Chart -->
+
+      <!-- Pie Chart -->
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Tickets By State</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countTicketsByState" height="310">{{chartTicketsByState}}</canvas>
+          </div>
+        </div>
+      </div>
+      <!-- Doughnut Chart -->
+      <div class="col-xs-4">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Employees By Role</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countEmployeesByRole" height="310">{{chartEmployeesByRole}}</canvas>
+          </div>
+        </div>
+      </div>
+      <!-- Polar Chart -->
+      <!-- Single Bar Chart -->
+      <div class="col-xs-4">
+        <div class="panel panel-bd lobidisable">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4>Help Disk This Year</h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <canvas id="countHelpDiskByMonth" height="310">{{chartHelpDiskByMonth}}</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

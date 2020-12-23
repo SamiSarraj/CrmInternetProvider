@@ -1,0 +1,62 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-ticket"></i>
+    </div>
+    <div class="header-title">
+      <h1>Asign Internet Plan</h1>
+      <small>Asign Internet Plan</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="alert alert-danger" [hidden]="!error">
+      Problem Has Been Accrued!
+    </div>
+    <div class="alert alert-success" [hidden]="!success">
+      Plan Has Been Asigned!
+    </div>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a href="#">
+                <h4>Assign Plans</h4>
+              </a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <form role="form" [formGroup]="asignPlanForm" (submit)="asignNetPlan()" id="asignPlanForm">
+              <div class="form-row">
+                <div class="form-group col-xs-6">
+                  <label>Customer Username</label>
+                  <select class="form-control" formControlName="customerUsername" name="customerUsername"  required>
+                    <option *ngFor="let customer of customers;" [value]="customer.username">{{customer.userFullName}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label>Asign to</label>
+                  <select class="form-control " formControlName="idPackage" name="idPackage"  required>
+                    <option *ngFor="let package of packages" [value]="package.id">{{package.title}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <br>
+                <div class="form-group col-xs-12 ">
+                  <button type="submit" class="btn btn-add"><i class="fa fa-check"></i> Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

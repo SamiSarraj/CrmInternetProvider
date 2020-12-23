@@ -1,0 +1,62 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>All tickets</h1>
+      <small>Ticket List</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-bd lobidrag">
+          <div class="panel-heading">
+            <div class="btn-group" id="buttonexport">
+              <a>
+                <h4>All Tickets</h4>
+              </a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr class="info">
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Topic</th>
+                  <th>Importance</th>
+                  <th>State</th>
+                  <th>Created</th>
+                  <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ticket of tickets">
+                  <!--<td><img src="assets/dist/img/w1.png" class="img-circle" alt="User Image" width="50" height="50"> </td>-->
+                  <td>{{ticket.id}}</td>
+                  <td>{{ticket.title}}</td>
+                  <td>{{ticket.topic}}</td>
+                  <td>{{ticket.importance}}</td>
+                  <td>{{ticket.state}}</td>
+                  <td>{{ticket.created}}</td>
+                  <td>
+                    <button type="button" class="btn btn-add btn-sm" (click)="goToTicket(ticket.id)"><i class="fa fa-pencil"></i></button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- customer Modal1 -->
+    <!-- /.modal -->
+  </section>
+</div>

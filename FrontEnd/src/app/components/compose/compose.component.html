@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="mailbox">
+          <div class="mailbox-header">
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="inbox-avatar">
+                  <i class="fa fa-user-circle fa-lg"></i>
+                  <div class="inbox-avatar-text hidden-xs hidden-sm">
+                    <div><small>Messages</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-8">
+                <div class="inbox-toolbar btn-toolbar">
+                  <div class="btn-group">
+                    <a href="/messages/inbox" class="btn btn-default"><span class="fa fa-long-arrow-left"></span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mailbox-body">
+            <div class="row m-0">
+              <div class="col-sm-3 p-0 inbox-nav hidden-xs hidden-sm">
+                <div class="mailbox-sideber">
+                  <div class="profile-usermenu">
+                    <h6>Messages box</h6>
+                    <ul class="nav">
+                      <li><a href="/messages/inbox"><i class="fa fa-inbox"></i> Inbox <small class="label pull-right bg-green"></small></a></li>
+                      <li><a href="/messages/sent"><i class="fa fa-envelope-o"></i> Send Mail</a></li>
+                    </ul>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail p-20">
+                <form role="form" [formGroup]="createMessageForm" (submit)="sendMessage()">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-md-2 col-form-label text-right">To :</label>
+                  <div class="col-sm-9 col-md-10">
+                    <select class="form-control" id="to" formControlName="receptor">
+                      <option *ngFor="let employee of employees" [value]="employee.username">{{employee.userInformation.firstName + " " + employee.userInformation.lastName}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-md-2 col-form-label text-right">Subject :</label>
+                  <div class="col-sm-9 col-md-10">
+                    <input class="form-control" type="text" id="subjejct" formControlName="subject">
+                  </div>
+                </div>
+                <!-- summernote -->
+                  <div class="form-group row">
+                    <label class="col-xs-12">Content</label>
+                    <div class="col-sm-9 col-md-12">
+                      <textarea class="form-control" formControlName="content" rows = "9"></textarea>
+                    </div>
+                  </div>
+                <hr>
+                <div class="btn-group pull-right">
+                  <button type="submit" class="btn btn-add">SEND</button>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

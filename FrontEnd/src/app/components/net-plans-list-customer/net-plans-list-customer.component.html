@@ -1,0 +1,95 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="header-icon">
+      <i class="fa fa-users"></i>
+    </div>
+    <div class="header-title">
+      <h1>Internet Plans</h1>
+      <small>Internet Plans</small>
+    </div>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+            <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
+    <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-bd lobidrag">
+                <div class="panel-heading">
+                  <div class="btn-group" id="buttonexport">
+                    <a href="#">
+                      <h4>My Present Plan</h4>
+                    </a>
+                  </div>
+                </div>
+                <div class="panel-body">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>ID</th>
+                    <th>Package</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let netPlans of validPlan; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{netPlans.internetPackageTitle}}</td>
+                    <td>{{netPlans.startingDate}}</td>
+                    <td>{{netPlans.endingDate}}</td>
+                    <td>{{netPlans.state}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-bd lobidrag">
+        <div class="panel-heading">
+          <div class="btn-group" id="buttonexport">
+            <a href="#">
+              <h4>All Plans</h4>
+            </a>
+          </div>
+        </div>
+        <div class="panel-body">
+              <div class="table-responsive">
+                <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                  <thead>
+                  <tr class="info">
+                    <th>ID</th>
+                    <th>Package</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let netPlan of allPlans; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{netPlan.internetPackageTitle}}</td>
+                    <td>{{netPlan.startingDate}}</td>
+                    <td>{{netPlan.endingDate}}</td>
+                    <td>{{netPlan.state}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+    <!-- customer Modal1 -->
+    <!-- /.modal -->
+  </section>
+  <!-- /.content -->
+</div>
