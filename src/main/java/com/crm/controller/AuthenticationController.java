@@ -23,14 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/token")
 public class AuthenticationController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+
+    private final JwtTokenUtil jwtTokenUtil;
+
+    private final UserService userService;
 
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    public AuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.userService = userService;
+    }
 
-    @Autowired
-    private UserService userService;
     // invalidate the token
     @RequestMapping(value = "/invalidate", method = RequestMethod.GET)
     public String invalidate(){

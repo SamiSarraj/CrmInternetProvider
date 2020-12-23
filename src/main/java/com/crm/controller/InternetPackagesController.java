@@ -13,16 +13,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 // controller to handle net packages requests
 @RestController
-@RequestMapping(value="/net-packages")
+@RequestMapping(value = "/net-packages")
 public class InternetPackagesController {
+    private final UserService userService;
+    private final InternetPackagesService internetPackagesService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private InternetPackagesService internetPackagesService;
+    public InternetPackagesController(UserService userService, InternetPackagesService internetPackagesService) {
+        this.userService = userService;
+        this.internetPackagesService = internetPackagesService;
+    }
+
     // get all packages
-    @GetMapping(value="/getAll")
+    @GetMapping(value = "/getAll")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
     public List<InternetPackages> getAllNetPackages() throws Exception {
         // check if the user requesting this method is valid
@@ -30,12 +36,14 @@ public class InternetPackagesController {
         if (user == null) throw new Exception("User not found");
         return internetPackagesService.getAllNetPackages();
     }
+
     // testing method
-    @GetMapping(value="/getAllTest")
+    @GetMapping(value = "/getAllTest")
     public List<InternetPackages> getAllNetPackagesTest() throws Exception {
         return internetPackagesService.getAllNetPackages();
     }
-    @GetMapping(value="/getByType/{Type}")
+
+    @GetMapping(value = "/getByType/{Type}")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")
     public List<InternetPackages> getAllNetPackagesByType(@PathVariable String type) throws Exception {
         // check if the user requesting this method is valid
@@ -43,8 +51,9 @@ public class InternetPackagesController {
         if (user == null) throw new Exception("User not found");
         return internetPackagesService.getAllNetPackagesByType(type);
     }
+
     // add new net package
-    @PostMapping(value="/addNewPackage")
+    @PostMapping(value = "/addNewPackage")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> addNewPackage(@RequestBody InternetPackages internetPackages) throws Exception {
         // check if the user requesting this method is valid
@@ -54,10 +63,11 @@ public class InternetPackagesController {
         System.out.println("New internet package was added");
         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
     }
+
     // modify package
     @PutMapping(value = "/modifyPackage/{id}")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
-    public ResponseEntity<?> modfiyPackage(@RequestBody InternetPackages internetPackages, @PathVariable long id) throws  Exception {
+    public ResponseEntity<?> modfiyPackage(@RequestBody InternetPackages internetPackages, @PathVariable long id) throws Exception {
         // check if the user requesting this method is valid
         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) throw new Exception("User not found");
@@ -65,7 +75,7 @@ public class InternetPackagesController {
         InternetPackages internetPackages1 = internetPackagesService.getOneById(id);
         if (internetPackages1 == null) throw new Exception("Package not found");
         internetPackagesService.addNewPackage(internetPackages);
-        System.out.println("Package: "+ id + " was successfully modified");
+        System.out.println("Package: " + id + " was successfully modified");
         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
     }
 

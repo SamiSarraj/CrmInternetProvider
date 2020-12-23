@@ -24,15 +24,13 @@ public class Tickets {
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    //private Date duration;          //duration of the ticket
-    //private String waznosc;
     private String importance;
     private String topic;
     @ManyToOne
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private User user;                  // from here we will have id of user for the processing unit
     @JsonIgnore
-    @OneToOne(mappedBy = "tickets" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "tickets", cascade = CascadeType.ALL, orphanRemoval = true)
     private ProcessUnit processUnit;
 
     public ProcessUnit getProcessUnit() {
@@ -84,6 +82,7 @@ public class Tickets {
     public void setUser(User user) {
         this.user = user;
     }
+
     public Tickets() {
     }
 

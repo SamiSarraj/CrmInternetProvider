@@ -5,11 +5,11 @@ import java.util.Date;
 
 @Entity
 public class CommentsTicket {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-@ManyToOne
-private ProcessUnit processUnit;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    private ProcessUnit processUnit;
     private String content;
     @Temporal(TemporalType.DATE)
     private Date created;
@@ -23,6 +23,7 @@ private ProcessUnit processUnit;
     }
 
     private String fullNameUser;
+
     public Long getId() {
         return id;
     }

@@ -15,6 +15,7 @@ public class CommentsHelpDisk {
     @Temporal(TemporalType.DATE)
     private Date created;
     private String fullNameUser;
+
     public Long getId() {
         return id;
     }

@@ -18,39 +18,47 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 // controller to handle help desk requests
 @RestController
-@RequestMapping(value="/help-disk")
+@RequestMapping(value = "/help-disk")
 public class HelpDiskController {
+    private final UserService userService;
+    private final HelpDiskService helpDiskService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private HelpDiskService helpDiskService;
+    public HelpDiskController(UserService userService, HelpDiskService helpDiskService) {
+        this.userService = userService;
+        this.helpDiskService = helpDiskService;
+    }
+
     // get help desk posts by topic
-     @GetMapping(value="/getAllByTopic/{topic}")
-     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
-    public List<HelpDiskDto> getAllByTopic (@PathVariable String topic) throws Exception {
-         // check if the user requesting this method is valid
-         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-         if (user == null) throw new Exception("User not found");
+    @GetMapping(value = "/getAllByTopic/{topic}")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+    public List<HelpDiskDto> getAllByTopic(@PathVariable String topic) throws Exception {
+        // check if the user requesting this method is valid
+        User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (user == null) throw new Exception("User not found");
         return helpDiskService.getAllByTopic(topic);
-     }
-     // add a new post
-     @PostMapping(value="/addNewHelp")
-     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
+    }
+
+    // add a new post
+    @PostMapping(value = "/addNewHelp")
+    @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> addNewHelp(@RequestBody HelpDisk helpDisk) throws Exception {
-         // check if the user requesting this method is valid
-         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-         if (user == null) throw new Exception("User not found");
-         helpDiskService.addHelpDisk(helpDisk,user);
-         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
-     }
-     // add comment to a post
-    @PostMapping(value="/addComment")
+        // check if the user requesting this method is valid
+        User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (user == null) throw new Exception("User not found");
+        helpDiskService.addHelpDisk(helpDisk, user);
+        return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
+    }
+
+    // add comment to a post
+    @PostMapping(value = "/addComment")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public ResponseEntity<?> addComment(@RequestBody HelpDiskCommentDto helpDiskCommentDto) throws Exception {
         // check if the user requesting this method is valid
-         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());     // tutaj moze byc login user
+        User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());     // tutaj moze byc login user
         if (user == null) throw new Exception("user not found");
         // check if the help desk post  is valid
         HelpDiskDetailsDto helpDiskDetailsDto = helpDiskService.getHelpDiskById(helpDiskCommentDto.getHelpDiskId());
@@ -59,12 +67,13 @@ public class HelpDiskController {
         System.out.println("Comment Was Added");
         return ResponseEntityHelper.jsonCodeResponse(ResponseKind.SUCCESS);
     }
+
     // get a post by its id
-    @GetMapping(value="/getHelpDiskById/{id}")
+    @GetMapping(value = "/getHelpDiskById/{id}")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN')")
     public HelpDiskDetailsDto getHelpDiskById(@PathVariable Long id) throws Exception {
         // check if the user requesting this method is valid
-         User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        User user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) throw new Exception("User not found");
         return helpDiskService.getHelpDiskById(id);
     }

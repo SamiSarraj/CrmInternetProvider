@@ -8,7 +8,8 @@ import java.util.Date;
 @Entity
 public class UserInformation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Sequence is better https://www.thoughts-on-java.org/jpa-generate-primary-keys/,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Sequence is better https://www.thoughts-on-java.org/jpa-generate-primary-keys/,
     private long id;
     private String firstName;
     private String lastName;
@@ -31,10 +32,12 @@ public class UserInformation {
     public void setUser(User user) {
         this.user = user;
     }
+
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     public long getId() {
         return id;
     }

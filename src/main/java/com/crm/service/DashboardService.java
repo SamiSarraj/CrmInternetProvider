@@ -14,16 +14,20 @@ import java.util.List;
 
 @Service
 public class DashboardService {
+    private final UserService userService;
+    private final TicketsService ticketsService;
+    private final ProcessUnitService processUnitService;
+    private final RatingAndCommentsRepository ratingAndCommentsRepository;
+    private final HelpDiskRepository helpDiskRepository;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private TicketsService ticketsService;
-    @Autowired
-    private ProcessUnitService processUnitService;
-    @Autowired
-    private RatingAndCommentsRepository ratingAndCommentsRepository;
-    @Autowired
-    private HelpDiskRepository helpDiskRepository;
+    public DashboardService(UserService userService, TicketsService ticketsService, ProcessUnitService processUnitService, RatingAndCommentsRepository ratingAndCommentsRepository, HelpDiskRepository helpDiskRepository) {
+        this.userService = userService;
+        this.ticketsService = ticketsService;
+        this.processUnitService = processUnitService;
+        this.ratingAndCommentsRepository = ratingAndCommentsRepository;
+        this.helpDiskRepository = helpDiskRepository;
+    }
 
     public ChartJsCountNewDto getAllDashboardUserNumbers() {
         ChartJsCountNewDto chartJsCountNewDto = new ChartJsCountNewDto();

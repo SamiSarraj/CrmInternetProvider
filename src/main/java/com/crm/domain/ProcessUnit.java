@@ -11,21 +11,21 @@ has 1 to many relation with CommentsTicket
 @Entity
 @Table(name = "ProcessingUnit")
 public class ProcessUnit {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
-private String state;           /*can be enum searh for enymtype.string - state(failed, completed, resolving, need attention)*/
-private String admin;
-private Date assigned;
-private Date finished;
-private Boolean isCompleted;
-private Boolean isResolving;
-@OneToOne
-@JoinColumn(name = "tickets_id")
-private Tickets tickets;
-@ManyToOne
-@JoinColumn(name = "employee_id")
-private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String state;           /*can be enum searh for enymtype.string - state(failed, completed, resolving, need attention)*/
+    private String admin;
+    private Date assigned;
+    private Date finished;
+    private Boolean isCompleted;
+    private Boolean isResolving;
+    @OneToOne
+    @JoinColumn(name = "tickets_id")
+    private Tickets tickets;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private User user;
 
     public long getId() {
         return id;

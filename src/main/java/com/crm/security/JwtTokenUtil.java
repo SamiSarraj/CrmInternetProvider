@@ -19,8 +19,12 @@ import static com.crm.security.Constants.SIGNING_KEY;
 @Component
 public class JwtTokenUtil implements Serializable {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public JwtTokenUtil(UserService userService) {
+        this.userService = userService;
+    }
 
     public Date getIssuedAtDateFromToken(AuthorizationToken token) {
         return getClaimFromToken(token, Claims::getIssuedAt);

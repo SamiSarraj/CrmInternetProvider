@@ -12,18 +12,22 @@ import java.util.*;
 @Service
 public class ChartsService {
 
-   @Autowired
-   private UserRepository userRepository;
-   @Autowired
-   private InternetPackagesRepository internetPackagesRepository;
-   @Autowired
-   private InternetPlanRepository internetPlanRepository;
-   @Autowired
-   private HelpDiskRepository helpDiskRepository;
-   @Autowired
-   private TicketsRepositry ticketsRepositry;
+   private final UserRepository userRepository;
+   private final InternetPackagesRepository internetPackagesRepository;
+   private final InternetPlanRepository internetPlanRepository;
+   private final HelpDiskRepository helpDiskRepository;
+   private final TicketsRepositry ticketsRepositry;
 
-   public ChartJsCountNewDto getAllCountNew(String role) {
+    @Autowired
+    public ChartsService(UserRepository userRepository, InternetPackagesRepository internetPackagesRepository, InternetPlanRepository internetPlanRepository, HelpDiskRepository helpDiskRepository, TicketsRepositry ticketsRepositry) {
+        this.userRepository = userRepository;
+        this.internetPackagesRepository = internetPackagesRepository;
+        this.internetPlanRepository = internetPlanRepository;
+        this.helpDiskRepository = helpDiskRepository;
+        this.ticketsRepositry = ticketsRepositry;
+    }
+
+    public ChartJsCountNewDto getAllCountNew(String role) {
        ChartJsCountNewDto chartJsCountNewDto = new ChartJsCountNewDto();
        List<Integer> amount = new ArrayList<>();
        List<User> user = new ArrayList<>();
@@ -171,20 +175,22 @@ public class ChartsService {
         String  employeeRole;
         for (User user : users) {
            employeeRole = user.getUserInformation().getEmployeeRole();
-            if (employeeRole.equals("Internet service")) {
-                amount.set(0,amount.get(0)+1);
-            }
-            else if (employeeRole.equals("Internet Packages")) {
-                amount.set(1,amount.get(1)+1);
-            }
-            else if (employeeRole.equals("Payment")) {
-                amount.set(2,amount.get(2)+1);
-            }
-            else if (employeeRole.equals("Crm Website")) {
-                amount.set(3,amount.get(3)+1);
-            }
-            else if (employeeRole.equals("Customer Service")) {
-                amount.set(4,amount.get(4)+1);
+            switch (employeeRole) {
+                case "Internet service":
+                    amount.set(0, amount.get(0) + 1);
+                    break;
+                case "Internet Packages":
+                    amount.set(1, amount.get(1) + 1);
+                    break;
+                case "Payment":
+                    amount.set(2, amount.get(2) + 1);
+                    break;
+                case "Crm Website":
+                    amount.set(3, amount.get(3) + 1);
+                    break;
+                case "Customer Service":
+                    amount.set(4, amount.get(4) + 1);
+                    break;
             }
         }
         chartJsCountNewDto.setAmount(amount);

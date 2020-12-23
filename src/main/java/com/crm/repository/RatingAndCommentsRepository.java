@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface RatingAndCommentsRepository extends CrudRepository<RatingAndComments, Long> {
     List<RatingAndComments> findAllByUsernameEmployee(String usernameEmployee);
+
     List<RatingAndComments> findAllByCustomerUsernameAndUsernameEmployee(String customer, String employee);
 }

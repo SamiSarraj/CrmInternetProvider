@@ -18,6 +18,7 @@ public class Messaging {
     private String usernameRecpetor;
     private String content;
     private Date time;
+
     public String getUsernameSender() {
         return usernameSender;
     }

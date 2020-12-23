@@ -55,6 +55,7 @@ public class InternetPlan {
     public void setInternetPackages(InternetPackages internetPackages) {
         this.internetPackages = internetPackages;
     }
+
     public String getState() {
         return state;
     }
@@ -76,8 +77,6 @@ public class InternetPlan {
     }
 
 
-
-
     public long getId() {
         return id;
     }
@@ -85,9 +84,6 @@ public class InternetPlan {
     public void setId(long id) {
         this.id = id;
     }
-
-
-
 
 
     public User getUser() {

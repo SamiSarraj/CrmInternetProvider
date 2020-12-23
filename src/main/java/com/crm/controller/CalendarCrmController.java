@@ -18,10 +18,15 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/calender")
 public class CalendarCrmController {
+    private final UserService userService;
+    private final CalendarCrmService calendarCrmService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private CalendarCrmService calendarCrmService;
+    public CalendarCrmController(UserService userService, CalendarCrmService calendarCrmService) {
+        this.userService = userService;
+        this.calendarCrmService = calendarCrmService;
+    }
+
     // get all events in calendar
     @GetMapping(value="")
     @PreAuthorize("hasAnyRole('EMPLOYEE','ADMIN','CUSTOMER')")

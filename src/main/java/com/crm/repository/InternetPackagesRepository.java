@@ -5,7 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface InternetPackagesRepository extends CrudRepository<InternetPackages,Long> {
-List<InternetPackages> findInternetPackagesByType(String type);
-InternetPackages findById(long id);
+public interface InternetPackagesRepository extends CrudRepository<InternetPackages, Long> {
+
+    List<InternetPackages> findInternetPackagesByType(String type);
+
+    InternetPackages findById(long id);
 }

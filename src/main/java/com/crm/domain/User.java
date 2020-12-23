@@ -12,7 +12,8 @@ import java.util.Set;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Sequence is better https://www.thoughts-on-java.org/jpa-generate-primary-keys/,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Sequence is better https://www.thoughts-on-java.org/jpa-generate-primary-keys/,
     private long id;
     @Column(nullable = false)
     private String username;
@@ -30,8 +31,10 @@ public class User {
     public void setUserInformation(UserInformation userInformation) {
         this.userInformation = userInformation;
     }
+
     @OneToOne(mappedBy = "user")
     private UserInformation userInformation;
+
     public String getUsername() {
         return username;
     }
@@ -47,6 +50,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public Role getRole() {
         return role;
     }
@@ -54,6 +58,7 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
     public long getId() {
         return id;
     }
@@ -61,7 +66,10 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
-    public User() {}
+
+    public User() {
+    }
+
     public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
