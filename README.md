@@ -32,12 +32,23 @@ To run the Spring Boot application on your local machine. One way is to execute 
 
 firstly u excute the BackEnd step then run the FrontEnd node.js server with the follow command " npm start ". The application will be up and running at localhost http://localhost:4200/crmNet
 
-### Picture of the running app
+### Visual examples of the running app
 
+* Adding new client:
 
+<img src="https://github.com/SamiSarraj/CrmInternetProvider/blob/master/Img/AddCustomer(1).png" width="350" title="hover text">
 
+* Customer list:
 
+<img src="https://github.com/SamiSarraj/CrmInternetProvider/blob/master/Img/ListCusotmer(2).png" width="350" title="hover text">
 
+* Adding new ticket:
 
+<img src="https://github.com/SamiSarraj/CrmInternetProvider/blob/master/Img/AddTicket(1).png" width="350" title="hover text">
 
+* Employee profile: 
+
+<img src="https://github.com/SamiSarraj/CrmInternetProvider/blob/master/Img/OcenPrac(2).png" width="350" title="hover text">
+
+To get a complete and detailed presentation of the application features or if you have any question please contact me at: samisarraj94@gmail.com.
 
