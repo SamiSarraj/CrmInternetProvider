@@ -26,7 +26,7 @@ The BackEnd was mainly developed in IntelliJ IDEA 2017.
 
 2 - a. Running BackEnd only: 
 
-To run the Spring Boot application on your local machine. One way is to execute the `main` method from your IDE. The Api will be exposed at localhost:8080/crm.
+To run the Spring Boot application on your local machine. One way is to execute the `main` method from your IDE. The Api will be exposed at http://localhost:8080/crm.
 
     b. Running whole application:
 
