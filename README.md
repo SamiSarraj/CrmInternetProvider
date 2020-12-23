@@ -1,11 +1,7 @@
 # CrmInternetProviderBackend
 A CRM system for an Internet network provider / Backend Project
 
-
-# Springboot-Application
-Minimal [Spring Boot](http://projects.spring.io/spring-boot/) sample app.
-
-## Requirements
+## Technologies
 
 For building and running the application you need:
 
