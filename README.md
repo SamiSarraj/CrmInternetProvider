@@ -1,5 +1,37 @@
-# CrmInternetProviderBackend
-A CRM system for an Internet network provider
+# CrmInternetProvider
+A web-based system for managing the relation between customers and ISP company. This include an complaint system for customers for raising complaints on the issues related to ISP provider and ordered internet packages.
+System goal is to improve business relationships, help companies stay connected to customers, streamline processes and improve firms profitability.
+By collecting information that identifies customers' buying habits, including preferences and frequency, CRM systems give businesses a closer look at their customers' wants and needs so they can provide better customer service solutions.
+
+## Main Functionality
+
+● Users system management (adding, modifying, deleting, role, rights etc)
+
+● Requests(tickets) to raise customers complaints
+
+● Requests(tickets) processing unit
+
+● Internet packages plan management (creating, modifying, deleting etc)
+
+● Internal Help desk for employees
+
+● General and specialized statics
+
+● Generating sensible graphs
+
+● Generating reports
+
+● Rating system
+
+● Customer capability of managing own internet plan
+
+● Built-in messaging service between customer and employee
+
+● Requests archive history
+
+● Customer actions history
+
+
 
 ## Technologies
 
